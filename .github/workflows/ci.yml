@@ -32,6 +32,7 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+
       - name: Cache Briefcase tools
         uses: actions/cache@v3.0.11
         with:
@@ -44,13 +45,15 @@ jobs:
       - uses: actions/checkout@v3.1.0
         with:
           fetch-depth: 0
+
       - name: Set up Python
         uses: actions/setup-python@v4.3.0
         with:
           python-version: ${{ matrix.python_version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install briefcase
+
+      - name: Install Briefcase
+        uses: rmartin16/.github-beeware/.github/actions/install-briefcase@install-briefcase
+
       - name: Build App
         run: |
           cd tests/apps/verify-${{ matrix.framework }}
