@@ -16,7 +16,7 @@ defaults:
 jobs:
   verify-apps:
     name: Build apps
-    uses: rmartin16/.github-beeware/.github/workflows/verify-app-build.yml@briefcase-from-pr-body
+    uses: rmartin16/.github-beeware/.github/workflows/app-build-verify.yml@briefcase-from-pr-body
     with:
       python-version: ${{ matrix.python-version }}
       runner-os: windows-latest
