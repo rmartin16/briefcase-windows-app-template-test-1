@@ -1,0 +1,24 @@
+
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "**"
+  workflow_call:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash # https://github.com/beeware/briefcase/pull/912
+
+jobs:
+  test-gh:
+    name: Test gh
+    runs-on: macos-latest
+    steps:
+    - name: Checkout .github repo
+      run: |
+         echo $(gh api repos/{owner}/{repo}/commits/${{ github.event.head_commit.id }}/pulls)
