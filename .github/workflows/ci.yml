@@ -26,11 +26,7 @@ jobs:
       with:
         python-version: "3.10"
 
-    - name: Set up Java
-      uses: actions/setup-java@v3.9.0
-      with:
-        distribution: oracle
-        java-version: 17
+    - uses: actions/setup-node@v3.5.0
 
     - name: Install Briefcase
       uses: rmartin16/.github-beeware/.github/actions/install-briefcase@auth-implicit-token
