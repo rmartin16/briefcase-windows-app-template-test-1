@@ -42,10 +42,13 @@ runs:
         PR_BODY="${{ inputs.testing-pr-body }}"
         if [ -z "${PR_BODY}" ]; then
           API_URL="${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
-          PR_BODY=$(curl -s -H "Accept: application/vnd.github+json" "${API_URL}" | jq -r '.body')
+          echo "$API_URL"
+          PR_BODY=$(curl -s -H "Accept: application/vnd.github+json" "${API_URL}")
         fi
         
         echo "${PR_BODY}"
+        
+        PR_BODY=$(echo "$PR_BODY" | jq -r '.body')
         
         BRIEFCASE_REPO=$(printf "%s" "${PR_BODY}" | perl -n -e '/BRIEFCASE[-_]*REPO:\s*\K\S+/i and print $&')
         BRIEFCASE_REF=$(printf "%s" "${PR_BODY}" | perl -n -e '/BRIEFCASE[-_]*REF:\s*\K\S+/i and print $&')
