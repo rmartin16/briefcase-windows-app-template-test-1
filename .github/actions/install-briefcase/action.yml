@@ -46,8 +46,11 @@ runs:
           API_URL="${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}"
           PR_BODY=$(curl -s -H "Accept: application/vnd.github+json" "${API_URL}" | jq -r '.body')
         fi
-        BRIEFCASE_REPO=$(printf "%s" "${PR_BODY}" | perl -wln -e '/BRIEFCASE[-_]*REPO:\s*\K\S+/i and print $&' | head -n1)
-        BRIEFCASE_REF=$(printf "%s" "${PR_BODY}" | perl -wln -e '/BRIEFCASE[-_]*REF:\s*\K\S+/i and print $&' | head -n1)
+        
+        echo "${PR_BODY}"
+        
+        BRIEFCASE_REPO=$(printf "%s" "${PR_BODY}" | perl -n -e '/BRIEFCASE[-_]*REPO:\s*\K\S+/i and print $&')
+        BRIEFCASE_REF=$(printf "%s" "${PR_BODY}" | perl -n -e '/BRIEFCASE[-_]*REF:\s*\K\S+/i and print $&')
 
         # If a version is not in the PR, use inputs specified in CI workflow
         if [ -z "${BRIEFCASE_REPO}" ]; then
