@@ -37,6 +37,8 @@ runs:
       shell: bash
       run: |
         set +o pipefail  # prevent grep failing the step if repo/ref isn't found
+        
+        man perl
 
         # Source version from Body of PR
         PR_BODY="${{ inputs.testing-pr-body }}"
