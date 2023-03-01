@@ -19,8 +19,13 @@ jobs:
     runs-on: macos-latest
     steps:
 
+    - name: Set up Python
+      uses: actions/setup-python@v4.3.0
+      with:
+        python-version: 3.10
+
     - name: Install Briefcase
-      uses: rmartin16/.github-beeware/.github/actions/install-briefcase@briefcase-from-pr-body
+      uses: .github/actions/install-briefcase
 
   #  verify-apps:
   #  name: Build apps
