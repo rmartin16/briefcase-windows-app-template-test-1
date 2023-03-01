@@ -1,0 +1,12 @@
+name: Dependabot Change Note
+
+on:
+  push:
+    branches:
+      - 'dependabot/**'
+
+jobs:
+  changenote:
+    name: Dependabot Change Note
+    uses: rmartin16/.github-beeware/.github/workflows/dependabot-changenote.yml@auth-implicit-token
+    secrets: inherit
