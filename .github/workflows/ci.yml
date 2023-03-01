@@ -16,7 +16,7 @@ defaults:
 jobs:
   install-briefcase:
     name: Install Briefcase
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
     - name: Checkout .github repo
       uses: actions/checkout@v3
