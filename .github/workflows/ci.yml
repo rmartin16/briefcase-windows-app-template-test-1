@@ -16,7 +16,7 @@ defaults:
 jobs:
   install-briefcase:
     name: Install Briefcase
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
 
     - name: Install Briefcase
